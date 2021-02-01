@@ -22,6 +22,8 @@ class RedirectIfAuthenticated
                 return redirect('admin/');
             }elseif($guard == 'web'){
                 return redirect('home/');
+            }elseif($guard == 'parents'){
+                return redirect('/parent/home');
             }
 
         }
