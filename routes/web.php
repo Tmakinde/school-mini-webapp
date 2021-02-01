@@ -20,7 +20,8 @@ Route::post('/MySubject', 'HomeController@createUserSubject')->name('User-Subjec
 Route::get('/Mycourses', 'HomeController@displayUserSubjects')->name('User-Courses');
 Route::get('/result', 'HomeController@viewResult')->name('myresult');
 Route::get('/download/result', 'HomeController@downloadResult')->name('download-result');
-
+Route::get('/parent', 'Parent\ParentController@index')->name('parent.index');
+Route::get('/parent/admission', 'Parent\ParentController@admission')->name('parent.admission');
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/register', 'Admin\RegisterController@showRegisterForm')->name('admin-register');
