@@ -52,6 +52,11 @@ return [
             'provider' => 'admins'
         ],
 
+        'parents' => [
+            'driver' => 'session',
+            'provider' => 'parents'
+        ],
+
     ],
 
     /*
@@ -82,9 +87,9 @@ return [
             'model' => App\Admin::class,
         ],
 
-        'institutions' => [
+        'parents' => [
             'driver' => 'eloquent',
-            'model' => App\Institution::class,
+            'model' => App\Parent::class,
         ],
 
         // 'users' => [
@@ -111,12 +116,6 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
-        ],
-
-        'institutions' => [
-            'provider' => "institutions",
             'table' => 'password_resets',
             'expire' => 60,
         ],
