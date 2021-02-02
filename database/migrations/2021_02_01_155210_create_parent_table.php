@@ -23,6 +23,11 @@ class CreateParentTable extends Migration
             $table->timestamps();
         });
 
+        Schema::table('users', function (Blueprint $table) {
+            $table->bigInteger('parent_id')->unsigned();
+            $table->foreign('parent_id')->references('id')->on('parents')->onDelete('cascade')->onUpdate('cascade');
+        });
+
     }
 
     /**

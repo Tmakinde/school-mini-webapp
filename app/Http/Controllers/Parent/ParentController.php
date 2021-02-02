@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class ParentController extends Controller
 {
     public function __construct(){
-        return $this->middleware('auth:parents');
+        return $this->middleware('auth:parents')->except('admission');
     }
 
     public function index(){
@@ -17,4 +17,6 @@ class ParentController extends Controller
     public function admission(){
         return view('Parent.admission');
     }
+
+    
 }

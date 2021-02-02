@@ -45,11 +45,15 @@ class User extends Authenticatable
     }
 
     public function subjects(){
-        return $this->belongsToMany(Subject::class);
+        return $this->belongsToMany(Subject::class, 'results');
     }
 
     public function results(){
         return $this->hasManyThrough(Result::class, Subject::class);
+    }
+
+    public function parents(){
+        return $this->belongsTo(Parents::class);
     }
 
 }
