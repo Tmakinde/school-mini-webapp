@@ -53,8 +53,6 @@ class AdmissionNotification extends Notification
                     ->line()
                     ->line('<b>Student Details</b>')
                     ->line($this->studentDetails->full_name)
-                    ->line($this->parents->mother_name)
-                    ->line($this->parents->phone_number)
                     ->action('Login to view message', url('/admin'));
     }
 
