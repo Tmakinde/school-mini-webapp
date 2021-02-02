@@ -45,6 +45,7 @@ class AdminController extends Controller
     {
         return view('Admin.layouts.master');
     }
+    
     public function index()
     {
         $currentAdmin = Auth::user();

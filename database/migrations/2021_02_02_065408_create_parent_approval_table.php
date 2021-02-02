@@ -14,8 +14,9 @@ class CreateParentApprovalTable extends Migration
     public function up()
     {
         Schema::table('parents', function (Blueprint $table) {
+            $table->string('parent_email');
+            $table->string('state');
             $table->timestamp('approval')->nullable();
-            
         });
     }
 

@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Validator;
 use App\Parents;
+use App\Admin;
+use App\User;
 use App\Notifications\Parent\AdmissionNotification;
+use App\Notifications\Admin\AdminAdmissionNotification;
 class ParentController extends Controller
 {
     public function __construct(){
@@ -29,32 +32,31 @@ class ParentController extends Controller
             'address' => ['required', 'string'],
             'city' => ['required', 'string'],
             'state' => ['required', 'string'],
-            'student_email' => ['required', 'email', 'unique:parents'],
-            'parent_email' => ['required', 'email', 'unique:users'],
-            'father_name' => ['required', 'string'],
-            'mother_name' => ['required', 'string'],
+            'parent_email' => ['required', 'email', 'unique:parents'],
+            'email' => ['required', 'email', 'unique:users'],
+            'parent_name' => ['required', 'string'],
             'occupation' => ['required', 'string'],
             'parent_address' => ['required', 'string'],
-            'phone_number' => ['required', 'integer'],
+            'phone_number' => ['required', 'string'],
         ]);
 
-        if($validator->pasess()) {
-            $studentDetails = $request->input('full_name', 'dob', 'sex', 'address', 'city', 'state', 'student_email');
+        if($validator->passes()) {
+            $studentDetails = $request->all();
             $parents = new Parents;
             $parents->father_name = $request->father_name;
             $parents->mother_name = $request->mother_name;
             $parents->occupation = $request->occupation;
-            $parents->parent_address = $request->parent_address;
+            $parents->street_address = $request->parent_address;
             $parents->phone_number = $request->phone_number;
             $parents->state = $request->state;
-            $parents->email = $request->parent_email;
+            $parents->parent_email = $request->parent_email;
             $parents->save();
             $parents->notify(new AdmissionNotification($parents)); // notification
             $admin = Admin::where('id', 1)->firstOrFail();
             $admin->notify(new AdminAdmissionNotification($parents, $studentDetails));
             return redirect()->route('parent.processed-admission');
         }
-        return redirect()->route('parent.process-admission')->withInput()->withErrors($validator);
+        return redirect()->route('parent.admission')->withInput()->withErrors($validator);
     }
 
 }

@@ -52,8 +52,4 @@ class User extends Authenticatable
         return $this->hasManyThrough(Result::class, Subject::class);
     }
 
-    public function parents(){
-        return $this->belongsTo(Parents::class);
-    }
-
 }

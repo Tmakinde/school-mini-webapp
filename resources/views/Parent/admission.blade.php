@@ -43,18 +43,14 @@ My School Web App | Portal
                         </div>
                         <div class="col-md-4 mb-3">
                                 <label for="validationDefault04"> STUDENT'S EMAIL ADDRESS</label>
-                                <input type="email" class="form-control" id="validationDefault04" name="student_email" placeholder="EMAIL ADDRESS" required>
+                                <input type="email" class="form-control" id="validationDefault04" name="email" placeholder="EMAIL ADDRESS" required>
                         </div>
                 </div>
                 <h2><span class="mb-3">Parent's Information</span></h2>
                 <div class="form-row">
                         <div class="col-md-3 mb-3">
-                                <label for="validationDefault01">FATHER'S NAME</label>
-                                <input type="text" class="form-control" id="validationDefault01" name="father_name" placeholder="FATHER'S NAME" required>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                                <label for="validationDefault02">MOTHER'S NAME</label>
-                                <input type="text" class="form-control" id="validationDefault02" name="mother_name" placeholder="MOTHER'S NAME" required>
+                                <label for="validationDefault01">NAME</label>
+                                <input type="text" class="form-control" id="validationDefault01" name="parent_name" placeholder="PARENT'S NAME" required>
                         </div>
                         <div class="col-md-3 mb-3">
                                 <label for="validationDefaultUsername">OCCUPATION</label>
@@ -68,6 +64,10 @@ My School Web App | Portal
                                         <input type="text" class="form-control" id="validationDefaultUsername" name="state" placeholder="STATE" aria-describedby="inputGroupPrepend2" required>
                                 </div>
                         </div>
+                        <div class="col-md-3 mb-3">
+                                <label for="validationDefault04"> PARENT'S EMAIL ADDRESS</label>
+                                <input type="email" class="form-control" id="validationDefault04" name="parent_email" placeholder="EMAIL ADDRESS" required>
+                        </div>
                 </div>
                 <div class="form-row">
                         <div class="col-md-6 mb-3">
@@ -78,10 +78,7 @@ My School Web App | Portal
                                 <label for="validationDefault04">PHONE NUMBER</label>
                                 <input type="text" class="form-control" id="validationDefault04" name="phone_number" placeholder="PHONE NUMBER" required>
                         </div>
-                        <div class="col-md-4 mb-3">
-                                <label for="validationDefault04"> PARENT'S EMAIL ADDRESS</label>
-                                <input type="email" class="form-control" id="validationDefault04" name="parent_email" placeholder="EMAIL ADDRESS" required>
-                        </div>
+                       
                 </div>
                 <div class="form-group">
                         <div class="form-check">

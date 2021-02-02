@@ -15,8 +15,7 @@ class CreateParentTable extends Migration
     {
         Schema::create('parents', function (Blueprint $table) {
             $table->id();
-            $table->text('father_name');
-            $table->text('mother_name');
+            $table->text('parent_name');
             $table->text('occupation');
             $table->text('street_address');
             $table->integer('phone_number');
