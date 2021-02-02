@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Validator;
 use App\Parents;
+use App\Notifications\Parent\AdmissionNotification;
 class ParentController extends Controller
 {
     public function __construct(){
@@ -38,6 +39,7 @@ class ParentController extends Controller
         ]);
 
         if($validator->pasess()) {
+            $studentDetails = $request->input('full_name', 'dob', 'sex', 'address', 'city', 'state', 'student_email');
             $parents = new Parents;
             $parents->father_name = $request->father_name;
             $parents->mother_name = $request->mother_name;
@@ -47,6 +49,9 @@ class ParentController extends Controller
             $parents->state = $request->state;
             $parents->email = $request->parent_email;
             $parents->save();
+            $parents->notify(new AdmissionNotification($parents)); // notification
+            $admin = Admin::where('id', 1)->firstOrFail();
+            $admin->notify(new AdminAdmissionNotification($parents, $studentDetails));
             return redirect()->route('parent.processed-admission');
         }
         return redirect()->route('parent.process-admission')->withInput()->withErrors($validator);
