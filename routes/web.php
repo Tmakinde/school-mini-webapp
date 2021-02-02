@@ -22,6 +22,10 @@ Route::get('/result', 'HomeController@viewResult')->name('myresult');
 Route::get('/download/result', 'HomeController@downloadResult')->name('download-result');
 Route::get('/parent', 'Parent\ParentController@index')->name('parent.index');
 Route::get('/parent/admission', 'Parent\ParentController@admission')->name('parent.admission');
+Route::post('/parent/admission/process', 'Parent\ParentController@processAdmission')->name('parent.process-admission');
+Route::get('/parent/admission/processed', function(){
+    return view('Parent.nonapproval');
+})->name('parent.processed-admission');
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/register', 'Admin\RegisterController@showRegisterForm')->name('admin-register');
