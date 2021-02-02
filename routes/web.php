@@ -26,6 +26,9 @@ Route::post('/parent/admission/process', 'Parent\ParentController@processAdmissi
 Route::get('/parent/admission/processed', function(){
     return view('Parent.nonapproval');
 })->name('parent.processed-admission');
+
+
+
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/register', 'Admin\RegisterController@showRegisterForm')->name('admin-register');
@@ -63,6 +66,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/addresult/{id}', 'Admin\UserController@addresultView')->name('add-result');
     Route::get('/result/students/{id}', 'Admin\UserController@resultStudent');
     Route::post('/result/submit/', 'Admin\UserController@submitResult')->name('submit-result');
+
+    //admission
+    Route::get('/view/parent/{id}', 'Admin\AdmissionController@getAdmissionProcess')->name('admin.admission');
 
     //Forgot Password Routes
     Route::get('/password/reset','Admin\ForgotpasswordController@showLinkRequestForm')->name('password-request');

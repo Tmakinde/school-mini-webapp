@@ -11,16 +11,14 @@ class AdmissionNotification extends Notification
 {
     use Queueable;
     public $parents;
-    public $studentDetails;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($parent, $studentDetails)
+    public function __construct($parent)
     {
         $this->parents = $parent;
-        $this->studentDetails = $studentDetails;
     }
 
     /**

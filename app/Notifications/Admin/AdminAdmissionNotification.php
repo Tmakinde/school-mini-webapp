@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AdmissionNotification extends Notification
+class AdminAdmissionNotification extends Notification
 {
     use Queueable;
     public $parents;
@@ -50,9 +50,9 @@ class AdmissionNotification extends Notification
                     ->line($this->parents->father_name)
                     ->line($this->parents->mother_name)
                     ->line($this->parents->phone_number)
-                    ->line()
+                    ->line('<br/>')
                     ->line('<b>Student Details</b>')
-                    ->line($this->studentDetails->full_name)
+                    ->line($this->studentDetails['full_name'])
                     ->action('Login to view message', url('/admin'));
     }
 
