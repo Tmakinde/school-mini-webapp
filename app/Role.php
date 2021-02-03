@@ -11,7 +11,7 @@ class Role extends Authenticatable
     use HasFactory;
 
     public function admins(){
-        return $this->hasOne(Admin::class);
+        return $this->hasMany(Admin::class);
     }
 
     public function superAdmins(){

@@ -12,6 +12,11 @@ My School Web Page | Admin
                         <a href ="http://127.0.0.1:8001/admin/addresult/{{$userInClass->id}}">{{$userInClass->name}}</a> 
                 </li>
                 @endforeach
+                @if($usersInClass->isEmpty())
+
+                        <span><h2 style="margin-top:200px;text-align:center">No Student in this class yet!!!</h2></span>
+
+                @endif
         </ul>
 </div>
 @endsection

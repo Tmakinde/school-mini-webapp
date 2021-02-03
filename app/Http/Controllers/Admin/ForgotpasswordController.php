@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use App\Admin;
 use Auth;
 use Password;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -27,9 +28,8 @@ class ForgotpasswordController extends Controller
 
     }
     // broker will use the password settings for admins guard in auth.php file
-    public function broker(){
-        
-        return Password::broker('institutions');
+    public function broker(Request $request){
+        return Password::broker('admins');
     
     }
 

@@ -26,8 +26,7 @@ My School Admin Web Page | Class
     
     <tbody>
     @foreach ($classes as $class)
-        <tr>
-        
+        <tr> 
           <td id = "usernameColumn"><h3 class = "text-success"><a href = "{{route('Student-Section', ['id' => $class->id])}}">{{$class->class}}</a></h3></td>  
           <td><h3 class = "text-success"><a href = "{{route('Subject-Section', ['id' => $class->id])}}" type = "button" class="btn btn-primary">Assign Subjects</a></h3></td>     
           <td>
@@ -36,7 +35,6 @@ My School Admin Web Page | Class
             <button class="btn btn-danger" type="submit">Delete</button>
             </form>
           </td> 
-
         </tr>
     @endforeach
     </tbody>

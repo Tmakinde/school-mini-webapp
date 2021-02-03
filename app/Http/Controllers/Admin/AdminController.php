@@ -9,6 +9,7 @@ use App\User;
 use App\Role;
 use Hash;
 use Gate;
+use Validator;
 use Illuminate\Http\Request;
 use GuzzleHttp\Exception\RequestException;
 use App\Http\Controllers\Controller;
@@ -59,7 +60,8 @@ class AdminController extends Controller
     public function Admin()
     {
         $currentAdmin = Auth::user();
-        $admins = Admin::all();
+        $role = Role::where('role', 'admin')->first();
+        $admins = $role->admins;
         return view('Admin.Admin', compact('admins'));
     }
     
@@ -71,12 +73,23 @@ class AdminController extends Controller
 
     public function create(Request $request)
     {
-        // create new admin using the institution id of the current admin
-        $newAdmin = new Admin;
-        $newAdmin->username = $request->username;
-        $newAdmin->password = Hash::make($request->password);
-        $newAdmin->save();
-        return redirect()->to('/admin/AdminSection');
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|unique:admins',
+            'password' => 'required',
+        ]);
+        
+        if($validator->passes()){
+            // create new admin using the institution id of the current admin
+            $newAdmin = new Admin;
+            $newAdmin->username = $request->username;
+            $newAdmin->password = Hash::make($request->password);
+            $roleId = collect(Role::where('role', 'admin')->get())->pluck('id');
+            //dd($roleId);
+            $newAdmin->role_id = $roleId[0];
+            $newAdmin->save();
+            return redirect()->to('/admin/AdminSection');
+        }
+        return redirect()->back()->withErrors($validator);
     }
 
     /**

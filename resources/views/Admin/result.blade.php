@@ -7,9 +7,20 @@ My School Web Page | Admin
 @section('content')
   <div class="container mt-5 pt-5" style="margin-top:50px">
     <ul>
-      @foreach($classes as $class)
-      <li><a href="result/students/{{$class->id}}">{{$class->class}}</a></li>
-      @endforeach
+      @if(!$classes->isEmpty())
+
+        @foreach($classes as $class)
+
+          <li><a href="result/students/{{$class->id}}">{{$class->class}}</a></li>
+
+        @endforeach
+
+      @endif
+      @if($classes->isEmpty())
+
+          <span ><h2 style="margin-top:200px;text-align:center">No class yet!!!</h2></span>
+
+      @endif
     </ul> 
   </div>
 @endsection

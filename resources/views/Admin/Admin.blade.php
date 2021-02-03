@@ -6,6 +6,14 @@ My School Web Page | Admin
 
 @section('content')
   <div class="container mt-5 pt-5">
+  @if($errors->any())
+    <ul style="margin-top:60px;">
+      @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+      @endforeach
+    </ul>
+    
+  @endif
     <table class="table table-bordered mt-5">
       <thead>
         <tr> 
@@ -23,7 +31,7 @@ My School Web Page | Admin
             @csrf
             <button class="btn btn-warning" type="submit">Delete</button>
             </form>
-            </td>      
+            </td>
           </tr>
           @endforeach
         </tbody>
