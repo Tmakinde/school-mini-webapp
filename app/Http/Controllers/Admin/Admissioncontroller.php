@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Parents;
 use App\Admission;
+use Gate;
 use App\Notifications\Parent\ApprovalNotification;
 use DB;
 
@@ -15,6 +16,7 @@ class Admissioncontroller extends Controller
     public function __construct()
     {
         $this->middleware('auth:admins');
+        $this->middleware('can:Admin-Gate');
     }
 
     public function getAdmissionProcess(){

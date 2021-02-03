@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Admin;
 use App\User;
+use App\Role;
 use Hash;
 use Gate;
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admins');
+        $this->middleware('can:Admin-Gate')->except('masterBlade','index');
     }
 
     protected function validator(array $data)
@@ -43,7 +45,9 @@ class AdminController extends Controller
     
     public function masterBlade()
     {
-        return view('Admin.layouts.master');
+        $admin = auth()->user();
+        $role = Role::where('role', 'super_admin')->first();
+        return view('Admin.layouts.master', compact('role', 'admin'));
     }
     
     public function index()

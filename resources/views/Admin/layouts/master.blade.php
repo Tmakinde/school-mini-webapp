@@ -87,15 +87,19 @@
                     <li class="nav-item m-auto pl-lg-5">
                         <a class="nav-link" href="{{route('Class-Section')}}">Class</a>
                     </li>
+                    @can('Admin-Gate')
                     <li class="nav-item m-auto pl-lg-5">
                         <a class="nav-link" href="{{route('Admin-Section')}}">Admin</a>
                     </li>
+                    @endcan
                     <li class="nav-item m-auto pl-lg-5">
                         <a class="nav-link" href="{{route('result')}}">Result</a>
                     </li>
+                    @can('Admin-Gate')
                     <li class="nav-item m-auto pl-lg-5">
                     <a class="nav-link" href="{{route('admin.admission')}}">Messages<i class="fas fa-bell ml-2"></i></a> 
                     </li>
+                    @endcan
                     <li class="nav-item m-auto pl-lg-5">
                     <a class="nav-link" href="{{route('admin-logout')}}">Sign out</a> 
                     </li>
