@@ -28,6 +28,12 @@
         .pagination-nav{
             margin-left:250px;
         }
+        span{
+            margin-top:20px;
+        }
+        .form-control{
+            border:0px;shadow:none
+        }
         html,
 		body {
 			background-color: #fff;
@@ -88,7 +94,7 @@
                         <a class="nav-link" href="{{route('result')}}">Result</a>
                     </li>
                     <li class="nav-item m-auto pl-lg-5">
-                    <a class="nav-link" href="#">Messages<i class="fas fa-bell ml-2"></i></a> 
+                    <a class="nav-link" href="{{route('admin.admission')}}">Messages<i class="fas fa-bell ml-2"></i></a> 
                     </li>
                     <li class="nav-item m-auto pl-lg-5">
                     <a class="nav-link" href="{{route('admin-logout')}}">Sign out</a> 

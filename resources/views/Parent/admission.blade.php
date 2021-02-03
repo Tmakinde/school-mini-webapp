@@ -19,64 +19,64 @@ My School Web App | Portal
                 <div class="form-row">
                         <div class="col-md-4 mb-3">
                                 <label for="validationDefault01">FULL NAME OF CHILD</label>
-                                <input type="text" class="form-control" id="validationDefault01" name="full_name" placeholder="FULL NAME OF CHILD" required>
+                                <input type="text" class="form-control" id="validationDefault01" name="full_name" placeholder="FULL NAME OF CHILD" value="{{ old('full_name') }}" required>
                         </div>
                         <div class="col-md-4 mb-3">
                                 <label for="validationDefault02">DATE OF BIRTH</label>
-                                <input type="date" class="form-control" id="validationDefault02" name="dob" placeholder="dd-mm-yy" required>
+                                <input type="date" class="form-control" id="validationDefault02" name="dob" placeholder="dd-mm-yy" value="{{ old('dob') }}" required>
                         </div>
                         <div class="col-md-4 mb-3">
                                 <label for="validationDefaultUsername">SEX</label>
                                 <div class="input-group">
-                                        <input type="text" class="form-control" id="validationDefaultUsername" name="sex" placeholder="SEX" aria-describedby="inputGroupPrepend2" required>
+                                        <input type="text" class="form-control" id="validationDefaultUsername" name="sex" placeholder="SEX" aria-describedby="inputGroupPrepend2" value="{{ old('sex') }}" required>
                                 </div>
                         </div>
                 </div>
                 <div class="form-row">
                         <div class="col-md-4 mb-3">
                                 <label for="validationDefault01">STREET ADDRESS</label>
-                                <input type="text" class="form-control" id="validationDefault01" name="address" placeholder="STREET ADDRESS" required>
+                                <input type="text" class="form-control" id="validationDefault01" name="address" placeholder="STREET ADDRESS" value="{{ old('address') }}" required>
                         </div>
                         <div class="col-md-4 mb-3">
                                 <label for="validationDefault02">CITY</label>
-                                <input type="text" class="form-control" id="validationDefault02" name="city" placeholder="CITY" required>
+                                <input type="text" class="form-control" id="validationDefault02" name="city"  placeholder="CITY" value="{{ old('city') }}" required>
                         </div>
                         <div class="col-md-4 mb-3">
                                 <label for="validationDefault04"> STUDENT'S EMAIL ADDRESS</label>
-                                <input type="email" class="form-control" id="validationDefault04" name="email" placeholder="EMAIL ADDRESS" required>
+                                <input type="email" class="form-control" id="validationDefault04" name="email" placeholder="EMAIL ADDRESS" value="{{ old('email') }}"  required>
                         </div>
                 </div>
                 <h2><span class="mb-3">Parent's Information</span></h2>
                 <div class="form-row">
                         <div class="col-md-3 mb-3">
                                 <label for="validationDefault01">NAME</label>
-                                <input type="text" class="form-control" id="validationDefault01" name="parent_name" placeholder="PARENT'S NAME" required>
+                                <input type="text" class="form-control" id="validationDefault01" name="parent_name" placeholder="PARENT'S NAME" value="{{ old('parent_name') }}"  required>
                         </div>
                         <div class="col-md-3 mb-3">
                                 <label for="validationDefaultUsername">OCCUPATION</label>
                                 <div class="input-group">
-                                        <input type="text" class="form-control" id="validationDefaultUsername" name="occupation" placeholder="OCCUPATION" aria-describedby="inputGroupPrepend2" required>
+                                        <input type="text" class="form-control" id="validationDefaultUsername" name="occupation" placeholder="OCCUPATION" aria-describedby="inputGroupPrepend2" value="{{ old('occupation') }}" required>
                                 </div>
                         </div>
                         <div class="col-md-3 mb-3">
                                 <label for="validationDefaultUsername">STATE</label>
                                 <div class="input-group">
-                                        <input type="text" class="form-control" id="validationDefaultUsername" name="state" placeholder="STATE" aria-describedby="inputGroupPrepend2" required>
+                                        <input type="text" class="form-control" id="validationDefaultUsername" name="state" placeholder="STATE" aria-describedby="inputGroupPrepend2" value="{{ old('state') }}"  required>
                                 </div>
                         </div>
                         <div class="col-md-3 mb-3">
                                 <label for="validationDefault04"> PARENT'S EMAIL ADDRESS</label>
-                                <input type="email" class="form-control" id="validationDefault04" name="parent_email" placeholder="EMAIL ADDRESS" required>
+                                <input type="email" class="form-control" id="validationDefault04" name="parent_email" placeholder="EMAIL ADDRESS" value="{{ old('parent_email') }}"  required>
                         </div>
                 </div>
                 <div class="form-row">
                         <div class="col-md-6 mb-3">
                                 <label for="validationDefault03">STREET ADDRESS</label>
-                                <input type="text" class="form-control" id="validationDefault03" name="parent_address" placeholder="STREET ADDRESS" required>
+                                <input type="text" class="form-control" id="validationDefault03" name="parent_address" placeholder="STREET ADDRESS" value="{{ old('parent_address') }}"  required>
                         </div>
                         <div class="col-md-3 mb-3">
                                 <label for="validationDefault04">PHONE NUMBER</label>
-                                <input type="text" class="form-control" id="validationDefault04" name="phone_number" placeholder="PHONE NUMBER" required>
+                                <input type="text" class="form-control" id="validationDefault04" name="phone_number" placeholder="PHONE NUMBER" value="{{ old('phone_number') }}" required>
                         </div>
                        
                 </div>

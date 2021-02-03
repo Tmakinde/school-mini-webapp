@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Parents;
+use App\Admission;
 use DB;
 
 class Admissioncontroller extends Controller
@@ -16,13 +17,31 @@ class Admissioncontroller extends Controller
     }
 
     public function getAdmissionProcess(){
-        $unapproveParents = Parents::where('unapproved', null)->get();
-        return view('Admin.unapproved', compact('unapproveParent'));
+        $unapproveParents = Parents::where('approval', null)->get();
+        return view('Admin.unapproved', compact('unapproveParents'));
     }
 
     public function viewAdmission(Request $request, $id){
-        $unapproveParents = DB::table('parent_admission')->where('id', $id)->first();
+        $unapproveParents = Parents::whereId($id)->first();
+        //dd($unapproveParents->admission->full_name);
         return view('Admin.ViewAdmission', compact('unapproveParents'));
+    }
+
+    public function approveAdmission(Request $request, $id){
+        $unapproveParents = Parents::whereId($id)->first();
+        $unapproveParents->update(['approval' => now()]);
+        
+        return redirect()->back()->with([
+            "message" => "Parent Successfully Approved!!!"
+        ]);
+    }
+
+    public function rejectAdmission(Request $request, $id){
+        $unapproveParents = Parents::whereId($id)->with('admissions')->first();
+        $unapproveParents->delete();
+        return redirect()->back()->with([
+            "message" => "Parent Successfully Rejected!!!"
+        ]);
     }
 
 }

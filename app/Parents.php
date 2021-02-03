@@ -11,6 +11,9 @@ class Parents extends Authenticatable
 {
    // use HasFactory;
     use Notifiable;
-
+    protected $fillable = ["approval"];
+    public function admission(){
+        return $this->hasOne(Admission::class, 'parent_id');
+    }
 
 }
