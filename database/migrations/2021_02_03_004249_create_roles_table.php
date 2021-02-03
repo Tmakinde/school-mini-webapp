@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateParentTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateParentTable extends Migration
      */
     public function up()
     {
-        Schema::create('parents', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->text('parent_name');
-            $table->text('occupation');
-            $table->text('street_address');
-            $table->text('phone_number');
+            $table->string('role');
             $table->timestamps();
+        });
+
+        Schema::table('admins', function (Blueprint $table) {
+            $table->bigInteger('role_id')->unsigned();
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -30,6 +32,6 @@ class CreateParentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parent');
+        Schema::dropIfExists('roles');
     }
 }

@@ -97,7 +97,10 @@
                     </li>
                     @can('Admin-Gate')
                     <li class="nav-item m-auto pl-lg-5">
-                    <a class="nav-link" href="{{route('admin.admission')}}">Messages<i class="fas fa-bell ml-2"></i></a> 
+                        <a class="nav-link" href="{{route('admin.admission')}}">Messages<i class="fas fa-bell ml-2"></i></a> 
+                    </li>
+                    <li class="nav-item m-auto pl-lg-5">
+                        <a class="nav-link" href="{{route('admin.all.parent')}}">Parents</a> 
                     </li>
                     @endcan
                     <li class="nav-item m-auto pl-lg-5">

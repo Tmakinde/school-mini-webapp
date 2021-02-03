@@ -14,7 +14,8 @@ use App\Notifications\Admin\AdminAdmissionNotification;
 class ParentController extends Controller
 {
     public function __construct(){
-        return $this->middleware('auth:parents')->except('admission', 'processAdmission');
+        $this->middleware('auth:admins');
+        $this->middleware('can:Admin-Gate');
     }
 
     public function index(){
@@ -70,6 +71,12 @@ class ParentController extends Controller
             return redirect()->route('parent.processed-admission');
         }
         return redirect()->route('parent.admission')->withInput()->withErrors($validator);
+    }
+
+    
+    public function getAllParent(Request $request){
+        $parents  = Parents::paginate(1);
+        return view('Parent.parent', compact('parents'));
     }
 
 }

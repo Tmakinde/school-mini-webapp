@@ -25,9 +25,14 @@ class Admissioncontroller extends Controller
     }
 
     public function viewAdmission(Request $request, $id){
-        $unapproveParents = Parents::whereId($id)->first();
-        //dd($unapproveParents->admission->full_name);
-        return view('Admin.ViewAdmission', compact('unapproveParents'));
+        try {
+            $unapproveParents = Parents::whereId($id)->firstOrFail();
+            return view('Admin.ViewAdmission', compact('unapproveParents'));
+        } catch (Exception $e) {
+            return abort(404);
+        }
+        
+
     }
 
     public function approveAdmission(Request $request, $id){

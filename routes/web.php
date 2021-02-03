@@ -72,6 +72,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/view/parent/admission/{id}', 'Admin\AdmissionController@viewAdmission')->name('admin.admission.view');
     Route::get('/parent/admission/approve/{id}', 'Admin\AdmissionController@approveAdmission')->name('admin.admission.approve');
     Route::post('/parent/admission/reject/{id}', 'Admin\AdmissionController@rejectAdmission')->name('admin.admission.reject');
+    Route::get('/all/parent/', 'Parent\ParentController@getAllParent')->name('admin.all.parent');
     //Forgot Password Routes
     Route::get('/password/reset','Admin\ForgotpasswordController@showLinkRequestForm')->name('password-request');
     Route::post('/password/email','Admin\ForgotpasswordController@sendResetLinkEmail')->name('admin.password-email');
