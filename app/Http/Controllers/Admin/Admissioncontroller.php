@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Parents;
 use App\Admission;
+use App\Notifications\Parent\ApprovalNotification;
 use DB;
 
 class Admissioncontroller extends Controller
@@ -30,7 +31,7 @@ class Admissioncontroller extends Controller
     public function approveAdmission(Request $request, $id){
         $unapproveParents = Parents::whereId($id)->first();
         $unapproveParents->update(['approval' => now()]);
-        
+        $unapproveParents->notify(new ApprovalNotification($unapproveParents));
         return redirect()->back()->with([
             "message" => "Parent Successfully Approved!!!"
         ]);

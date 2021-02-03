@@ -10,9 +10,13 @@ use Illuminate\Notifications\Notifiable;
 class Parents extends Authenticatable
 {
    // use HasFactory;
+   
     use Notifiable;
-    protected $fillable = ["approval"];
+
+    protected $fillable = ['approval', 'parent_email'];
+
     public function admission(){
+
         return $this->hasOne(Admission::class, 'parent_id');
     }
 
