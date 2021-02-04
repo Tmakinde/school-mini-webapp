@@ -67,7 +67,7 @@ class HomeController extends Controller
     }
 
     public $array = [];
-    
+
     public function userTransformer(){
         $user = auth()->user();
         $result = [
@@ -94,7 +94,7 @@ class HomeController extends Controller
                             "test" => $key->test,
                             "total" => $key->total,
                             "position" => $pos
-                            ]);
+                        ]);
                         break;
                     }
                     $pos++;
@@ -104,7 +104,8 @@ class HomeController extends Controller
         return $this->array;
     }
 
+    public function classPos(){
+
+    }
     
 }
-// get the subject id
-// 

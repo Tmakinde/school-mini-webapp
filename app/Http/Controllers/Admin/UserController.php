@@ -11,6 +11,7 @@ use App\User;
 use App\Classes;
 use App\Subject;
 use App\Result;
+use App\Position;
 use DB;
 use Hash;
 use Validator;
@@ -202,6 +203,7 @@ class UserController extends Controller
     {
         $userSelected = User::where('id', $id)->first();
         $addIdToSession = session()->put('user_id', $id);
+        $addUserClassIdToSession = session()->put('class_id', $userSelected->classes->id);
         $userSubjects = $userSelected->subjects;
         return view('Admin.addresult', compact('userSubjects'));
     }
@@ -209,21 +211,28 @@ class UserController extends Controller
     public function submitResult(Request $request)
     {
         $totalArray = [];
+        $overAllScore = 0;
         foreach ($request->score as $key => $value) {
             $total = $value[0] + $value[1];
             $totalArray[$key] = $total;
-            
+            $overAllScore += $total;
         }
+        
         foreach ($request->score as $key => $value) {
-            $result = new Result;
-            $result->test = $value[0];
-            $result->exam = $value[1];
-            $result->total = $totalArray[$key];
-            $result->subject_id = $request->subjectIdArray[$key];
-            $result->user_id = session()->get('user_id');
-            $result->save();
+            $result = Result::firstOrCreate([
+                'user_id'   =>  session()->get('user_id'),
+                'test'      =>   $value[0],
+                'exam'      =>  $value[1],
+                'subject_id' => $request->subjectIdArray[$key],
+                'total' =>  $totalArray[$key],
+            ]);
         }
-
+        // save overall score to position table
+        $position = Position::firstOrCreate([
+            'user_id'   =>  session()->get('user_id'),
+            'total'     =>  $overAllScore,
+            'classes_id' => session()->get('class_id'),
+        ]);
         return response()->json([
             "success" => "score sucessfully added",
         ]);

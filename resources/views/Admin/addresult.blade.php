@@ -36,13 +36,13 @@ My School Web Page | Admin
                         <label>{{$userSubject->Subjectname}}</label>
                 </div>
                 <div class="col-md-3">
-                        <input type="number" name="score[{{$i}}][]" class="form-control" placeholder="Test Score">
+                        <input type="number" max="30" name="score[{{$i}}][]" class="form-control" placeholder="Test Score">
                 </div>
                 <div class="col-md-3">
-                        <input type="number" name="score[{{$i}}][]" class="form-control" placeholder="Exam Score">
+                        <input type="number" max="70" name="score[{{$i}}][]" class="form-control" placeholder="Exam Score">
                 </div>
                 <div class="col-md-3" style="display:none">
-                        <input type="number" name="subjectIdArray[{{$i}}]" value = "{{$subjectIdArray[0]}}" class="form-control" placeholder="Exam Score">
+                        <input type="number" name="subjectIdArray[{{$i}}]" value = "{{$subjectIdArray[0]}}" class="form-control">
                 </div>
 
         </div>

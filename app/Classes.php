@@ -21,5 +21,9 @@ class Classes extends Model
     public function subjects(){
         return $this->hasMany(Subject::class);
     }
+
+    public function positions(){
+        return $this->hasMany(Position::class);
+    }
     
 }

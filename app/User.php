@@ -52,4 +52,8 @@ class User extends Authenticatable
         return $this->hasManyThrough(Result::class, Subject::class);
     }
 
+    public function position(){
+        return $this->hasOne(Position::class);
+    }
+
 }
