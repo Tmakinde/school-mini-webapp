@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Admin;
 use App\User;
 use App\Role;
+use App\Parents;
 use Hash;
 use Gate;
 use Validator;
@@ -46,9 +47,10 @@ class AdminController extends Controller
     
     public function masterBlade()
     {
+        $countUnapproveForm = Parents::where('approval', null)->count();
         $admin = auth()->user();
         $role = Role::where('role', 'super_admin')->first();
-        return view('Admin.layouts.master', compact('role', 'admin'));
+        return view('Admin.layouts.master', compact('countUnapproveForm'));
     }
     
     public function index()

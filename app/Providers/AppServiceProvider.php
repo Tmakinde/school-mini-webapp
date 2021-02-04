@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\Parents;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,5 +24,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        view()->composer('*', function($view){
+            $countUnapproveForm = Parents::where('approval', null)->count();
+            if (auth()->check()) {
+                view()->share('countUnapproveForm', $countUnapproveForm);
+            }
+        });
     }
 }

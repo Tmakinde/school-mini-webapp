@@ -75,7 +75,7 @@ class ParentController extends Controller
 
     
     public function getAllParent(Request $request){
-        $parents  = Parents::paginate(1);
+        $parents  = Parents::paginate(10);
         return view('Parent.parent', compact('parents'));
     }
 

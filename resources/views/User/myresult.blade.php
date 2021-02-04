@@ -34,7 +34,7 @@ My School Admin Web App | Portal
     </tr>
   </tbody>
 </table>
-<a href="{{ route('download-result',['download'=>'pdf']) }}">Download PDF</a>
+<a href="{{ route('download-result') }}">Download PDF</a>
 @endsection
 @section('scripts')
 @parent

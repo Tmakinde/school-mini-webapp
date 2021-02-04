@@ -65,9 +65,6 @@ public function getPosition($subjectId)
 }
 
 
-
-
-
 //Get all subjects
 //Results table
 //Do an inner join with the subjects the student took

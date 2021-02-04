@@ -97,7 +97,7 @@
                     </li>
                     @can('Admin-Gate')
                     <li class="nav-item m-auto pl-lg-5">
-                        <a class="nav-link" href="{{route('admin.admission')}}">Messages<i class="fas fa-bell ml-2"></i></a> 
+                        <a class="nav-link" href="{{route('admin.admission')}}">Messages <span class="badge" style="margin-top:-3px;color:red;line-height:10px">{{$countUnapproveForm}}</span></a> 
                     </li>
                     <li class="nav-item m-auto pl-lg-5">
                         <a class="nav-link" href="{{route('admin.all.parent')}}">Parents</a> 
