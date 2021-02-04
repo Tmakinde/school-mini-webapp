@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Admin;
 use App\User;
 use App\Classes;
+use App\Position;
 use App\Subject;
 //use SnappyPDF;
 use PDF;
@@ -73,8 +74,8 @@ class HomeController extends Controller
         $result = [
             "name" => $user->name,
             "class" => $user->classes->class,
-            "class_pos" => null,
-            "subjects" => $this->resultpos(),
+            "class_pos" => $this->classPos(),
+            "subjects" => $this->subjectPos(),
 
         ];
         dd(json_encode($result));
@@ -106,6 +107,19 @@ class HomeController extends Controller
 
     public function classPos(){
 
+        $user = auth()->user();
+        $userClassId = $user->classes->id;
+        $classPosCollection = Position::where('classes_id', $userClassId)->orderByDesc('total')->get();
+        $pos = 1;
+        
+        foreach ($classPosCollection as $key) {
+            if ($key->user_id === $user->id) {
+                return $pos;
+                break;
+            }
+            $pos++;
+        }
+        
     }
     
 }

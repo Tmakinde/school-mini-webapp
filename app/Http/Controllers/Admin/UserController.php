@@ -221,7 +221,7 @@ class UserController extends Controller
         foreach ($request->score as $key => $value) {
             $result = Result::firstOrCreate([
                 'user_id'   =>  session()->get('user_id'),
-                'test'      =>   $value[0],
+                'test'      =>  $value[0],
                 'exam'      =>  $value[1],
                 'subject_id' => $request->subjectIdArray[$key],
                 'total' =>  $totalArray[$key],

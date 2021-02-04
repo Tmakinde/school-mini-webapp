@@ -29,6 +29,7 @@ Route::get('/parent/admission/processed', function(){
 
 Route::get('/checker', 'HomeController@resultpos');
 Route::get('/checker/trans', 'HomeController@userTransformer');
+Route::get('/pos', 'HomeController@classPos');
 
 Route::group(['prefix' => 'admin'], function () {
 
