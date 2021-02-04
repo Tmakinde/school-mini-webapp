@@ -10,7 +10,7 @@ use App\Admin;
 use App\User;
 use App\Classes;
 use App\Subject;
-use SnappyPDF;
+//use SnappyPDF;
 use PDF;
 use Illuminate\support\Facades\Storage;
 class HomeController extends Controller
@@ -60,10 +60,51 @@ class HomeController extends Controller
 
     public function downloadResult(Request $request){
         
-        $pdf = PDF::loadView('User.mypdfresult');
+        //$pdf = PDF::loadView('User.mypdfresult');
         //$pdf->set_base_path("/public/css/sign-in-page");
-        return $pdf->download('pdf_file.pdf');
+        return PDF::loadView('User.mypdfresult')->setOrientation('landscape')->setPaper('a4')->setOption('margin-bottom', 0)->inline('pdf_file.pdf');
         
     }
 
+    public $array = [];
+    
+    public function userTransformer(){
+        $user = auth()->user();
+        $result = [
+            "name" => $user->name,
+            "class" => $user->classes->class,
+            "class_pos" => null,
+            "subjects" => $this->resultpos(),
+
+        ];
+        dd(json_encode($result));
+    }
+    public function subjectPos()
+    {
+        $user = User::with('subjects.results')->where('id', auth()->user()->id)->get(); // user, subjects, result collection
+        //dd($user);
+        $user->each(function($userCol){ 
+            $subjects = $userCol->subjects->each(function($subjectCol){
+                $pos = 1;
+                foreach ($subjectCol->results->sortByDesc('total') as $key) {
+                    if ($key->user_id === auth()->user()->id) {
+                        array_push($this->array, [
+                            "name" => $subjectCol->Subjectname,
+                            "exam_score" => $key->exam,
+                            "test" => $key->test,
+                            "total" => $key->total,
+                            "position" => $pos
+                            ]);
+                        break;
+                    }
+                    $pos++;
+                } 
+            }); 
+        });
+        return $this->array;
+    }
+
+    
 }
+// get the subject id
+// 

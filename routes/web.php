@@ -27,7 +27,8 @@ Route::get('/parent/admission/processed', function(){
     return view('Parent.nonapproval');
 })->name('parent.processed-admission');
 
-
+Route::get('/checker', 'HomeController@resultpos');
+Route::get('/checker/trans', 'HomeController@userTransformer');
 
 Route::group(['prefix' => 'admin'], function () {
 
