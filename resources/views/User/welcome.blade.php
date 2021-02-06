@@ -13,8 +13,11 @@ My School Web App | Portal
         <div class ="col-md-3 col-xl-3 col-sm-3">
             <h6 style="float:center;color:red">Class: <span class ="text-success">{{$userClass->class}}</span></h6>
         </div>
-        <div class ="col-md-6 col-xl-6 col-sm-6">        
+        <div class ="col-md-3 col-xl-3 col-sm-3">        
             <h6 style="color:red">Email: <span class ="text-success">{{$currentUser->email}}</span></h6>
+        </div>
+        <div class ="col-md-3 col-xl-3 col-sm-3">        
+            <h6 style="color:red">Admission Number: <span class ="text-success">{{$currentUser->admission_number}}</span></h6>
         </div>
     </div>
     <div id = "courses"> 

@@ -70,10 +70,16 @@ class UserController extends Controller
             'name' => 'required',
             "email" => 'required|email|unique:users',
             "password "=> 'required',
+            "admssion_number"=> 'required|admssion_number|unique:users',
         ]);
         if($request->name !== null ){
            
-            $newUser = new User;
+            $newUser = User::firstOrCreate([
+                'email' =>  $request->email,
+                'name' =>   $request->name,
+                'pasword' =>   Hash::make($request->password),
+                'admission_no' => $request->admission_number,
+            ]);
 
             $newUser->name = $request->name;
 

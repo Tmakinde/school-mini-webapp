@@ -98,7 +98,6 @@ class HomeController extends Controller
                             "test" => $key->test,
                             "total" => $key->total,
                             "position" => $pos,
-                            
                         ]);
                         break;
                     }

@@ -19,7 +19,9 @@ My School Admin Web App  | Students
       <input type = "email" name = "email" id ="addEmail" placeholder ="Input Student Email here"><br>
       <label>Password</label><br>
       <input type = "text" name = "password" id ="addPassword" placeholder ="Input Student Password here" ><br><br>
-      <input type ="Submit" id = "AddSubmit" value ="Add">
+      <label>Password</label><br>
+      <input type = "text" name = "admission_number" id ="addPassword" placeholder ="Input Student Admission Number here" ><br><br>
+      <input type ="ADD" id = "AddSubmit" value ="Add">
     </form>
     <table class="table mt-5 table-bordered">
     <thead>

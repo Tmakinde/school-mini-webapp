@@ -6,7 +6,7 @@
   <meta name="viewport"
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Alakada | Login</title>
+  <title>MARZOOK MODEL SCHOOLS | PARENT Login</title>
   <link rel="stylesheet" href="{{ url('css/sign-in-page/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ url('css/sign-in-page/css/css/all.css') }}">
   
@@ -52,8 +52,10 @@ background-color:whitesmoke;
               <h1 class="h3 mb-3 font-weight-normal">MARZOOK MODEL SCHOOLS</h1>
             </div>
             <div class="card-body">
-              <label for="inputEmail" class="sr-only">Username</label>
-              <input type="email" id="inputEmail" class="form-control" value = "<?= old('email'); ?>" name ='email' placeholder="Email Address">
+              <label for="inputEmail" class="sr-only mb-4">Your Child Email Address</label>
+              <input type="email" id="inputEmail" style="margin-bottom:20px" class="form-control" value = "<?= old('email'); ?>" name ='email' placeholder="Your Child Email Address">
+              <label for="inputEmail" class="sr-only mt-3">Admission Number</label>
+              <input type="text" id="inputEmail" class="form-control" value = "<?= old('email'); ?>" name ='admission_number' placeholder="Admission Number">
             </div>
             <div class="card-body">
               <div class="checkbox mb-3">

@@ -125,7 +125,9 @@ return [
             'expire' => 60,
         ],
         'parents' => [
-           
+            'provider' => 'parents',
+            'table' => 'password_resets',
+            'expire' => 60,
         ],
     ],
 
