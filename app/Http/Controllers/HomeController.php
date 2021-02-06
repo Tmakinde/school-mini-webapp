@@ -56,31 +56,34 @@ class HomeController extends Controller
     }
 
     public function viewResult(Request $request){
-        return view('User.myresult');
+        return view('User.myresult')->with(['userTransformer' => $userTransformer,'classInfo' => $classInfo]);
     }
 
     public function downloadResult(Request $request){
-        
+        $userTransformer = $this->userTransformer();
+        $classInfo = $this->classInfo();
         //$pdf = PDF::loadView('User.mypdfresult');
         //$pdf->set_base_path("/public/css/sign-in-page");
-        return PDF::loadView('User.mypdfresult')->setOrientation('landscape')->setPaper('a4')->setOption('margin-bottom', 0)->inline('pdf_file.pdf');
+        //return view('User.mypdfresult')->with(['userTransformer' => $userTransformer,'classInfo' => $classInfo]);
+        return PDF::loadView('User.mypdfresult', ['userTransformer' => $userTransformer,'classInfo' => $classInfo])->setOrientation('landscape')->setPaper('a4')->inline('pdf_file.pdf');
         
     }
 
     public $array = [];
 
-    public function userTransformer(){
+    public function userTransformer($admission){
         $user = auth()->user();
-        $result = [
+        //dd($this->classinfo()["percentage"]);
+        return [
             "name" => $user->name,
-            "class" => $user->classes->class,
-            "class_pos" => $this->classPos(),
-            "subjects" => $this->subjectPos(),
+            "class_name" => $user->classes->class,
+            "subjects" => $this->subjectInfo(),
 
         ];
-        dd(json_encode($result));
+        
+        
     }
-    public function subjectPos()
+    public function subjectInfo()
     {
         $user = User::with('subjects.results')->where('id', auth()->user()->id)->get(); // user, subjects, result collection
         //dd($user);
@@ -91,10 +94,11 @@ class HomeController extends Controller
                     if ($key->user_id === auth()->user()->id) {
                         array_push($this->array, [
                             "name" => $subjectCol->Subjectname,
-                            "exam_score" => $key->exam,
+                            "exam" => $key->exam,
                             "test" => $key->test,
                             "total" => $key->total,
-                            "position" => $pos
+                            "position" => $pos,
+                            
                         ]);
                         break;
                     }
@@ -105,21 +109,30 @@ class HomeController extends Controller
         return $this->array;
     }
 
-    public function classPos(){
+    public function classInfo(){
 
         $user = auth()->user();
+        $countSubjects = $user->count();
         $userClassId = $user->classes->id;
         $classPosCollection = Position::where('classes_id', $userClassId)->orderByDesc('total')->get();
+        $total_students = $classPosCollection->count();
         $pos = 1;
         
         foreach ($classPosCollection as $key) {
             if ($key->user_id === $user->id) {
-                return $pos;
+                
+                return [
+                    "position" => $pos,
+                    "total_students" => $total_students,
+                    "mark_obtained" => $key->total,
+                    "mark_obtainable" => ($countSubjects*100) ,
+                    "percentage" =>  number_format(($key->total)/($countSubjects), 2)
+                ];
                 break;
             }
             $pos++;
         }
-        
     }
+
     
 }

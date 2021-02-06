@@ -89,7 +89,7 @@ return [
 
         'parents' => [
             'driver' => 'eloquent',
-            'model' => App\Parent::class,
+            'model' => App\User::class,
         ],
 
         // 'users' => [
@@ -123,6 +123,9 @@ return [
             'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 60,
+        ],
+        'parents' => [
+           
         ],
     ],
 

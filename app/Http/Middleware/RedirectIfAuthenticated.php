@@ -23,7 +23,7 @@ class RedirectIfAuthenticated
             }elseif($guard == 'web'){
                 return redirect('home/');
             }elseif($guard == 'parents'){
-                return redirect('/parent/home');
+                return redirect('/parent/');
             }
 
         }

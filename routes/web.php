@@ -13,6 +13,10 @@
 
 Route::get('/login', 'Auth\LoginController@showLoginForm');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
+
+Route::get('/parent/login', 'Parent\LoginController@showLoginForm')->name('parent-login');
+Route::post('/parent/login', 'Parent\LoginController@login')->name('parent.login');
+
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');

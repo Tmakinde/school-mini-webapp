@@ -70,7 +70,7 @@
 
   <body id ="body">
     <nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark text-right">
-    
+        <a class="nav-link" href="{{route('home')}}"><h2><b>MARZOOK MODEL SCHOOLS<b></h2></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -83,10 +83,7 @@
                     <a class="nav-link" href="{{route('User-Courses')}}">My Courses</a>
                 </li>
                 <li class="nav-item m-auto pl-lg-5">
-                    <a class="nav-link" href="{{route('myresult')}}">Results</a>
-                </li>
-                <li class="nav-item m-auto pl-lg-5">
-                <a class="nav-link" href="#">Messages<i class="fas fa-bell ml-2"></i></a> 
+                    <a class="nav-link" href="{{route('download-result')}}">Download Result</a>
                 </li>
                 <li class="nav-item m-auto pl-lg-5">
                 <a class="nav-link" href="{{route('logout')}}">Sign out</a> 
