@@ -191,7 +191,7 @@ class UserController extends Controller
         $currentClass = Classes::where('id', $id)->first();
         $usersInClass = $currentClass->users;
         //dd($usersInClass);
-        return view('Admin.resultStudents', compact('usersInClass'));
+        return view('Admin.resultStudents', compact('usersInClass', 'currentClass'));
     }
 
     public function addResultView(Request $request, $id)

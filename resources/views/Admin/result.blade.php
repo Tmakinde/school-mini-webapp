@@ -6,12 +6,17 @@ My School Web Page | Admin
 
 @section('content')
   <div class="container mt-5 pt-5" style="margin-top:50px">
-    <ul>
+    <div class="mt-5">
+      <div class="">
+        <span class="text-info" style="text-align:center"><h3>All Classes In School</h3></span>
+      </div>
+    </div>
+    <ul class="mt-5">
       @if(!$classes->isEmpty())
 
         @foreach($classes as $class)
 
-          <li><a href="result/students/{{$class->id}}">{{$class->class}}</a></li>
+          <li class="card-header"><a href="result/students/{{$class->id}}"><h2 style="color:red">{{$class->class}}</h2></a></li>
 
         @endforeach
 
@@ -28,6 +33,6 @@ My School Web Page | Admin
 
     <script type="text/javascript" src="{{asset('js/sign-in-page/js/jquery-3.5.1.min.js')}}"></script>
     
-    <script type="text/javascript" src="{{asset('js/sign-in-page/js//bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
 @parent
 @endsection
