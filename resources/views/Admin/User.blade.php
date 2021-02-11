@@ -5,12 +5,20 @@ My School Admin Web App  | Students
 @endsection
 
 @section('content')
-   <div class="container mt-5 pt-5" >
-      <div class = "alert alert-success" id = "alert" style ="display:none">
-        <h6 id ="result"></h6>
-      </div>
-    
+  <div class="container mt-5 pt-5" >
    <h4 class ="well mb-4">{{$currentClass->class}}</h4>
+    @if($errors->any())
+      @foreach($errors->all() as $error)
+        <div class = "alert alert-danger" id = "alert">
+          <h6>{{$error}}</h6>
+        </div>
+      @endforeach
+    @endif
+    @if($message = Session::get('message'))
+    <div class = "alert alert-success" id = "alert">
+      <h6>{{$message}}</h6>
+    </div>
+    @endif
     <form id ="AddForm" method ="Post" action ="{{route('Add-Student', ['id' => $currentClass->id])}}">
     @csrf
       <label>Name</label><br>
@@ -19,9 +27,9 @@ My School Admin Web App  | Students
       <input type = "email" name = "email" id ="addEmail" placeholder ="Input Student Email here"><br>
       <label>Password</label><br>
       <input type = "text" name = "password" id ="addPassword" placeholder ="Input Student Password here" ><br><br>
-      <label>Password</label><br>
+      <label>Admission Number</label><br>
       <input type = "text" name = "admission_number" id ="addPassword" placeholder ="Input Student Admission Number here" ><br><br>
-      <input type ="ADD" id = "AddSubmit" value ="Add">
+      <input type ="submit" id = "AddSubmit" value ="Add">
     </form>
     <table class="table mt-5 table-bordered">
     <thead>

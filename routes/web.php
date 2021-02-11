@@ -90,7 +90,4 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/password/reset/{token}','Admin\ResetpasswordController@showResetForm')->name('password.reset');
     Route::post('/password/reset','Admin\ResetpasswordController@reset')->name('admin.password-update');
 
-    // email confirmation route
-    Route::get('/activation/{token}','Admin\RegisterController@adminActivation')->name('email-confirmation');
-
 });

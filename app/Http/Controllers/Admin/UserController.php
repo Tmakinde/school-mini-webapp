@@ -69,35 +69,24 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             "email" => 'required|email|unique:users',
-            "password "=> 'required',
-            "admssion_number"=> 'required|admssion_number|unique:users',
+            "password"=> 'required',
+            "admission_number"=> 'required|unique:users',
         ]);
-        if($request->name !== null ){
-           
+        if($request->name !== null && $validator->passes()){
             $newUser = User::firstOrCreate([
                 'email' =>  $request->email,
                 'name' =>   $request->name,
-                'pasword' =>   Hash::make($request->password),
-                'admission_no' => $request->admission_number,
+                'password' =>   Hash::make($request->password),
+                'admission_number' => $request->admission_number,
+                'classes_id' => $request->id,
             ]);
-
-            $newUser->name = $request->name;
-
-            $newUser->email = $request->email;
             
-            $newUser->password = Hash::make($request->password);
-
-            // request for the id of the class to which the student is to be added to from the url
-
-            $newUser->classes_id = $request->id;
-            $newUser->save();
-            
-            return redirect()->back();
+            return redirect()->back()->with([
+                'message' => 'Student Successfully Added'
+            ]);
         }
        
-        return response()->json([
-            'Error' => 'Unable to Submit your details',
-        ]);
+        return redirect()->back()->withErrors($validator);
     }
         
     public function listUser(Request $request)

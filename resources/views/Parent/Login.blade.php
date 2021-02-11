@@ -49,7 +49,7 @@ background-color:whitesmoke;
             </div>
           @endif
             <div class="card-header">
-              <h1 class="h3 mb-3 font-weight-normal">MARZOOK MODEL SCHOOLS</h1>
+              <h1 class="h3 mb-3 font-weight-normal">PARENT DOWNLOAD RESULT PAGE</h1>
             </div>
             <div class="card-body">
               <label for="inputEmail" class="sr-only mb-4">Your Child Email Address</label>
