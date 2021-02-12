@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Admin;
 use App\Role;
+use App\User;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('Admin-Gate', function($admin){
             return $admin->roles->role === 'super_admin';
 
+        });
+
+        Gate::define('Lock-Gate', function($user){
+            return $user->classes->activatons == 'null';
         });
     }
 }

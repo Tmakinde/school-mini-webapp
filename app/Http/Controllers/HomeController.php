@@ -14,11 +14,13 @@ use App\Subject;
 //use SnappyPDF;
 use PDF;
 use Illuminate\support\Facades\Storage;
+
 class HomeController extends Controller
 {
     //
     function __construct(){
         $this->middleware('auth:web');
+        $this->middleware('can:Lock-Gate')->except('masterBlade', 'index');
     }
 
     public function masterBlade(){

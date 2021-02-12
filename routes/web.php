@@ -59,6 +59,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/ClassSection', 'Admin\UserController@Class')->name('Class-Section');
     Route::post('/Add-Class', 'Admin\UserController@addClass')->name('Add-Class');
     Route::post('/Delete-Class', 'Admin\UserController@deleteClass')->name('Delete-Class');
+    Route::post('/lock/portal/{id}', 'Admin\UserController@lockportal')->name('lock-portal');
     
     //Student CRUD
     Route::get('/StudentSection', 'Admin\UserController@Users')->name('Student-Section');

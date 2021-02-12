@@ -25,5 +25,9 @@ class Classes extends Model
     public function positions(){
         return $this->hasMany(Position::class);
     }
+
+    public function activations(){
+        return $this->hasOne(Activation::class, 'class_id');
+    }
     
 }

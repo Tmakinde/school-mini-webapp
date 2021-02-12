@@ -54,6 +54,16 @@ My School Admin Web App  | Students
     @endforeach
     </tbody>
     </table>
+    <form action="{{route('lock-portal', [$currentClass->id])}}" method="post">
+    @csrf
+    @if($currentClass->activations == null)
+      <input class="btn btn-md btn-success" type="submit" value="Lock Portal" style="float:right">
+    @endif
+    @if($currentClass->activations != null)
+      <input class="btn btn-md btn-success" type="submit" value="Unlock Portal" style="float:right">
+    @endif
+    </form>
+    <blockquote>Note:<i>Remember that when you lock portal,  students will not be able to perform action than to just view their portal homepage.</i></blockquote>
   </div>
 @endsection
 @section('scripts')

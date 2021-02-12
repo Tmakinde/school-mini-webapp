@@ -24,13 +24,11 @@ My School Web Page | Admin
         @php
         $i = 1
         @endphp
-        
         @foreach($userSubjects as $userSubject)
         @php
         $subjectIdArray = [];
         array_push($subjectIdArray, $userSubject->id);
         @endphp
-        
         <div class="row form-row">
                 <div class="col-md-3">
                         <label>{{$userSubject->Subjectname}}</label>
@@ -44,14 +42,12 @@ My School Web Page | Admin
                 <div class="col-md-3" style="display:none">
                         <input type="number" name="subjectIdArray[{{$i}}]" value = "{{$subjectIdArray[0]}}" class="form-control">
                 </div>
-
         </div>
         <span style="display:none">{{$i++}}</span>
         @endforeach
         <input type="submit" class="btn btn-success btn-md" style="float:right">
 </form>
 @endif
-        
 </div>
 @endsection
 @section('scripts')

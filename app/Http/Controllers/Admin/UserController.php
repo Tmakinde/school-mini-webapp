@@ -12,6 +12,7 @@ use App\Classes;
 use App\Subject;
 use App\Result;
 use App\Position;
+use App\Activation;
 use DB;
 use Hash;
 use Validator;
@@ -87,6 +88,23 @@ class UserController extends Controller
         }
        
         return redirect()->back()->withErrors($validator);
+    }
+
+    public function lockportal(Request $request, $id)
+    {
+
+        $Classes = Classes::findOrFail($id);
+        $activation = Activation::where('class_id',$id)->first();
+        if ($activation != null) {
+            $activation->delete();
+            return redirect()->back();
+        }else {
+            $activation = new Activation;
+            $activation->class_id = $id;
+            $activation->save();
+            return redirect()->back();
+        }
+        
     }
         
     public function listUser(Request $request)
