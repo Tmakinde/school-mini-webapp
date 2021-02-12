@@ -13,6 +13,7 @@ use App\Subject;
 use App\Result;
 use App\Position;
 use App\Activation;
+use App\Registration;
 use DB;
 use Hash;
 use Validator;
@@ -248,6 +249,29 @@ class UserController extends Controller
         ]);
         return response()->json([
             "success" => "score sucessfully added",
+        ]);
+    }
+
+    public function courseRegistrationView($id){
+        session()->put('class_id', $id);
+        return view('Admin.registration-time');
+    }
+
+    public function courseRegistration(Request $request){
+        $class = Classes::findOrFail(session()->get('class_id'));
+        $registration = Registration::firstOrNew([
+            'class_id'=> session()->get('class_id'),
+        ]);
+        $registration->hour = $request->hour;
+        $registration->minutes = $request->minutes;
+        $registration->seconds = $request->seconds;
+        $registration->year = $request->year;
+        $registration->day = $request->day;
+        $registration->month= $request->month;
+        $registration->save();
+
+        return redirect()->to('/admin/StudentSection?id='.session()->get('class_id'))->with([
+            'message' => 'Registration deadline successfully set!!!'
         ]);
     }
 

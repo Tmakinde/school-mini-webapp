@@ -5,6 +5,7 @@ My School Admin Web App  | Students
 @endsection
 
 @section('content')
+
   <div class="container mt-5 pt-5" >
    <h4 class ="well mb-4">{{$currentClass->class}}</h4>
     @if($errors->any())
@@ -63,8 +64,10 @@ My School Admin Web App  | Students
       <input class="btn btn-md btn-success" type="submit" value="Unlock Portal" style="float:right">
     @endif
     </form>
+    <a href="{{route('deadline.view', [$currentClass->id])}}" class="btn btn-success">Set Registration Deadline</a>
     <blockquote>Note:<i>Remember that when you lock portal,  students will not be able to perform action than to just view their portal homepage.</i></blockquote>
   </div>
+
 @endsection
 @section('scripts')
   <script>

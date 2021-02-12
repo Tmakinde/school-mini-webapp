@@ -11,7 +11,7 @@ use App\User;
 use App\Classes;
 use App\Position;
 use App\Subject;
-//use SnappyPDF;
+use App\Registration;
 use PDF;
 use Illuminate\support\Facades\Storage;
 
@@ -20,7 +20,7 @@ class HomeController extends Controller
     //
     function __construct(){
         $this->middleware('auth:web');
-        $this->middleware('can:Lock-Gate')->except('masterBlade', 'index');
+        $this->middleware('can:Lock-Gate')->except('masterBlade', 'index', 'deadlineRegistrationApi');
     }
 
     public function masterBlade(){
@@ -133,6 +133,14 @@ class HomeController extends Controller
             }
             $pos++;
         }
+    }
+
+    public function deadlineRegistrationApi(Request $request){
+        $class_id = $request->class_id;
+        $deadline = Registration::where('class_id', $class_id)->first();
+        return response()->json([
+            'deadline' => $deadline,
+        ]);
     }
 
     

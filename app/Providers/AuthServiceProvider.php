@@ -36,5 +36,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('Lock-Gate', function($user){
             return $user->classes->activatons == 'null';
         });
+        
     }
 }

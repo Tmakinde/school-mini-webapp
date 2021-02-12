@@ -30,4 +30,7 @@ class Classes extends Model
         return $this->hasOne(Activation::class, 'class_id');
     }
     
+    public function registrations(){
+        return $this->hasOne(Registration::class);
+    }
 }

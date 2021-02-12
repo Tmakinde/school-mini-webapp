@@ -36,6 +36,7 @@ Route::get('/parent/admission/processed', function(){
 Route::get('/checker', 'HomeController@resultpos');
 Route::get('/checker/trans', 'HomeController@userTransformer');
 Route::get('/pos', 'HomeController@classPos');
+Route::get('/registration/deadline', 'HomeController@deadlineRegistrationApi');
 
 
 Route::group(['prefix' => 'admin'], function () {
@@ -91,4 +92,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/password/reset/{token}','Admin\ResetpasswordController@showResetForm')->name('password.reset');
     Route::post('/password/reset','Admin\ResetpasswordController@reset')->name('admin.password-update');
 
+    //Registration route
+    Route::get('/course/registration/deadline/{id}','Admin\UserController@courseRegistrationView')->name('deadline.view');
+    Route::post('/course/registration/deadline/','Admin\UserController@courseRegistration')->name('deadline.post');
 });
