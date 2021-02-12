@@ -70,15 +70,17 @@ My School Web App | Portal
             {
                 var now = new Date();
                 var duration = (registeration - now);
+                console.log(registeration);
                 var days = Math.floor(duration / (1000 * 60 * 60 * 24));
                 var hours = Math.floor((duration%(1000*60*60*24))/(1000*60*60))
                 var minutes = Math.floor(((duration%(1000*60*60*24))%(1000*60*60))/(1000*60));
                 var seconds = Math.floor(((((duration%(1000*60*60*24))%(1000*60*60))%(1000*60)))/1000);
-                document.getElementById("timer").innerHTML ='<b>'+ 
+                document.getElementById("timer").innerHTML ='<b>'+ days + 'd '+
                 hours + "h " + minutes + "m " + seconds + "s "+'</b>';
                 if (duration < 00) {
-                clearInterval(interval);
-                document.getElementById("registration").css('display', 'none');
+                    clearInterval(interval);
+                    $('#timer').css('display', 'none');
+                    $('#registration').css('display', 'none');
                 }
                
             }, 1000);

@@ -267,7 +267,7 @@ class UserController extends Controller
         $registration->seconds = $request->seconds;
         $registration->year = $request->year;
         $registration->day = $request->day;
-        $registration->month= $request->month;
+        $registration->month= $request->month - 1; // 1 is minus bcos js month start from 0 as january
         $registration->save();
 
         return redirect()->to('/admin/StudentSection?id='.session()->get('class_id'))->with([
