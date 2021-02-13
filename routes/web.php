@@ -66,6 +66,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/StudentSection', 'Admin\UserController@Users')->name('Student-Section');
     Route::post('/Add-Student', 'Admin\UserController@createUser')->name('Add-Student');
     Route::post('/Delete-Student', 'Admin\UserController@destroy')->name('Delete-Student');
+    Route::get('/restore-Student', 'Admin\UserController@restoreStudentsView')->name('restore.view');
+    Route::post('/restore-Student/{id}', 'Admin\UserController@restoreStudents')->name('restore.student');
+    Route::post('/delete-Student/force/{id}', 'Admin\UserController@forceDelete')->name('forcedelete.student');
 
     //Subject CRUD
     Route::get('/SubjectSection', 'Admin\UserController@Subjects')->name('Subject-Section');

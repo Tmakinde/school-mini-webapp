@@ -59,6 +59,7 @@ class UserController extends Controller
     public function Users(Request $request){
         $currentClass = Classes::where('id',$request->id)->first();
         $listStudents = $currentClass->users;
+        
         return view('Admin.User')->with([
             'currentClass'=>$currentClass,
             'listStudents'=>$listStudents,
@@ -89,6 +90,25 @@ class UserController extends Controller
         }
        
         return redirect()->back()->withErrors($validator);
+    }
+
+    public function restoreStudentsView(){
+        $deletedStudents = User::onlyTrashed()->get();
+        return view('Admin.restore', compact('deletedStudents'));
+    }
+
+    public function restoreStudents($id){
+        $deletedStudents = User::onlyTrashed()->whereId($id)->restore();
+        return redirect()->back()->with([
+            'message' => 'Student Successfully Restored!'
+        ]);
+    }
+
+    public function forceDelete($id){
+        $deletedStudents = User::onlyTrashed()->whereId($id)->forceDelete();
+        return redirect()->back()->with([
+            'message' => 'Student Successfully Deleted!'
+        ]);
     }
 
     public function lockportal(Request $request, $id)

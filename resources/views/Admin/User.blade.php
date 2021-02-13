@@ -20,6 +20,7 @@ My School Admin Web App  | Students
       <h6>{{$message}}</h6>
     </div>
     @endif
+    <a href="{{route('restore.view')}}" style="float:right" class="btn btn-success">Restore Deleted Students</a>
     <form id ="AddForm" method ="Post" action ="{{route('Add-Student', ['id' => $currentClass->id])}}">
     @csrf
       <label>Name</label><br>
