@@ -233,20 +233,22 @@ class UserController extends Controller
         }
         
         foreach ($request->score as $key => $value) {
-            $result = Result::firstOrCreate([
+            $result = Result::firstOrNew([
                 'user_id'   =>  session()->get('user_id'),
                 'test'      =>  $value[0],
                 'exam'      =>  $value[1],
                 'subject_id' => $request->subjectIdArray[$key],
                 'total' =>  $totalArray[$key],
             ]);
+            $result->save();
         }
         // save overall score to position table
-        $position = Position::firstOrCreate([
+        $position = Position::firstOrNew([
             'user_id'   =>  session()->get('user_id'),
             'total'     =>  $overAllScore,
             'classes_id' => session()->get('class_id'),
         ]);
+        $position->save();
         return response()->json([
             "success" => "score sucessfully added",
         ]);
@@ -261,13 +263,13 @@ class UserController extends Controller
         $class = Classes::findOrFail(session()->get('class_id'));
         $registration = Registration::firstOrNew([
             'class_id'=> session()->get('class_id'),
+            'minutes' => $request->minutes,
+            'seconds' => $request->seconds,
+            'year' => $request->year,
+            'day' => $request->day,
+            'month' => $request->month - 1,
+            'hour' => $request->hour,
         ]);
-        $registration->hour = $request->hour;
-        $registration->minutes = $request->minutes;
-        $registration->seconds = $request->seconds;
-        $registration->year = $request->year;
-        $registration->day = $request->day;
-        $registration->month= $request->month - 1; // 1 is minus bcos js month start from 0 as january
         $registration->save();
 
         return redirect()->to('/admin/StudentSection?id='.session()->get('class_id'))->with([
