@@ -38,6 +38,13 @@ Route::get('/checker/trans', 'HomeController@userTransformer');
 Route::get('/pos', 'HomeController@classPos');
 Route::get('/registration/deadline', 'HomeController@deadlineRegistrationApi');
 
+//forgot password
+Route::get('/password/reset','Auth\ForgotpasswordController@showLinkRequestForm')->name('password.request');
+Route::post('/password/email','Auth\ForgotpasswordController@sendResetLinkEmail')->name('password.email');
+//Reset Password Routes
+Route::get('/password/reset/{token}','Admin\ResetpasswordController@showResetForm')->name('password.reset');
+Route::post('/password/reset','Auth\ResetpasswordController@reset')->name('password-update');
+
 
 Route::group(['prefix' => 'admin'], function () {
 
@@ -98,4 +105,12 @@ Route::group(['prefix' => 'admin'], function () {
     //Registration route
     Route::get('/course/registration/deadline/{id}','Admin\UserController@courseRegistrationView')->name('deadline.view');
     Route::post('/course/registration/deadline/','Admin\UserController@courseRegistration')->name('deadline.post');
+
+    //forgot password
+    Route::get('/password/reset','Admin\ForgotpasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('/password/email','Admin\ForgotpasswordController@sendResetLinkEmail')->name('admin.password-email');
+    //Reset Password Routes
+    Route::get('/password/reset/{token}','Admin\ResetpasswordController@showResetForm')->name('password.reset');
+    Route::post('/password/reset','Admin\ResetpasswordController@reset')->name('admin.password-update');
 });
+

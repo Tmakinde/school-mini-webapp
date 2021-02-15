@@ -34,6 +34,7 @@ class AdminController extends Controller
         $this->validate($request, [
             'username' => ['required', 'string'],
             'password' => ['required', 'string'],
+            'email' => ['required', 'email', 'unique:admins']
            
         ]);
             
@@ -78,15 +79,15 @@ class AdminController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required|unique:admins',
             'password' => 'required',
+            'email' => ['required', 'email', 'unique:admins']
         ]);
         
         if($validator->passes()){
-            // create new admin using the institution id of the current admin
             $newAdmin = new Admin;
             $newAdmin->username = $request->username;
             $newAdmin->password = Hash::make($request->password);
+            $newAdmin->email = $request->email;
             $roleId = collect(Role::where('role', 'admin')->get())->pluck('id');
-            //dd($roleId);
             $newAdmin->role_id = $roleId[0];
             $newAdmin->save();
             return redirect()->to('/admin/AdminSection');

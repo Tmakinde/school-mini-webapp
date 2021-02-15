@@ -14,6 +14,7 @@ class LoginController extends Controller
 
     public function __construct(){
         return $this->middleware('auth:parents')->except('showLoginForm', 'login');
+        $this->middleware('can:Lock-Gate')->except('showLoginForm');
     }
 
     public function showLoginForm(){
@@ -27,6 +28,9 @@ class LoginController extends Controller
         $user = User::where('email', $email)->where('admission_number', $admission_number)->first();  
 
         if (auth()->guard('parents')->loginUsingId($user->id)){
+            if ($this->subjectInfo() == [] && $this->classInfo() == null) {
+                return redirect()->back()->withErrors(['No result yet!!!']);
+            }
             return redirect()->intended(route('parent.result'));
         }
 
@@ -79,7 +83,7 @@ class LoginController extends Controller
     public function classInfo(){
 
         $user = auth()->guard('parents')->user();
-        $countSubjects = $user->count();
+        $countSubjects = $user->subjects->count();
         $userClassId = $user->classes->id;
         $classPosCollection = Position::where('classes_id', $userClassId)->orderByDesc('total')->get();
         $total_students = $classPosCollection->count();

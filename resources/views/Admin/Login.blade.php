@@ -67,7 +67,15 @@ background-color:whitesmoke;
               </div>
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-            <span class="mt-5 ml-5" style="float:right;"><a href = "{{route('password-request')}}" class = 'mt-2'><b style="color:black">Forgot Password ?</b></a></span>
+            <div class="form-group row mb-0">
+              <div class="col-md-8 offset-md-4">
+                  @if (Route::has('password.request'))
+                      <a class="btn btn-link" href="{{ route('password.request') }}">
+                          {{ __('Forgot Your Password?') }}
+                      </a>
+                  @endif
+              </div>
+          </div>
             <p class="mt-5 mb-3" style="color:black">&copy; 2020</p>
           </form>
         </div>

@@ -53,9 +53,9 @@ My School Web Page | Admin
                     <label>Password</label>
                     <br>
                     <input type="text" name='password' required ><br>
-                    <input type="hidden" style='margin-top:10px' id = 'action' name = 'action' value = "update">
+                    <label>Email</label><br>
+                    <input type="email" name='email' required ><br>
                     <input type="submit" style='margin-top:10px' id = 'submit' name = 'submit' value = 'Submit'>
-
                 </form>
                 </div> 
                 <div class="modal-footer"> 

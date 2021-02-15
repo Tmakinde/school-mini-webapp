@@ -34,7 +34,7 @@ background-color:whitesmoke;
             @if ($errors->any())
             
             @foreach ($errors->all() as $error)
-              <h6 class = 'text-danger' style = "float:center;margin-left:35px;margin-bottom:10px">{{$error}}</h6>
+              <h6 style = "float:center;margin-left:35px;margin-bottom:10px;color:white">{{$error}}</h6>
             @endforeach
           
           @endif

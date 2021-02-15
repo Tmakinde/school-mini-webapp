@@ -27,8 +27,8 @@ class ForgotpasswordController extends Controller
         ]);
 
     }
-    // broker will use the password settings for admins guard in auth.php file
-    public function broker(Request $request){
+
+    public function broker(){
         return Password::broker('admins');
     
     }
