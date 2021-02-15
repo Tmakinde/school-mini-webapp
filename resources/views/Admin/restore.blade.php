@@ -42,7 +42,7 @@ My School Admin Web App  | Students
     @empty
 
         <tr>
-            <td colspan="2">
+            <td colspan="3">
                <h4>No deleted students for now!!!</h4>
             </td>
         </tr>

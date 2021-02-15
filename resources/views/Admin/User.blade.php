@@ -45,7 +45,7 @@ My School Admin Web App  | Students
     @foreach ($listStudents as $Students)
         <tr>
           <td id = "usernameColumn" style = "text-align:center"><h6>{{$Students->name}}</h6></td>
-          <td>
+          <td class="{{$Students->name}}">
             <form class = "deleteForm" >
             @csrf
             <input type ="hidden" id ="hiddenValue" value = "{{$Students->id}}">
@@ -94,10 +94,10 @@ My School Admin Web App  | Students
         }
       $('.deleteForm').on('submit',function(event){
           event.preventDefault();
-          var action = $(this).attr('action');
-          console.log($('#hiddenValue').val());
+          var id = $(this)[0].children[1].defaultValue;
+          
           jQuery.ajax({
-          url: "{{route('Delete-Student')}}" +'?id=' + $('#hiddenValue').val(),
+          url: "{{route('Delete-Student')}}" +'?id=' + id,
           type: "POST",
           data:{
             "_token":"{{ csrf_token() }}",
@@ -112,9 +112,8 @@ My School Admin Web App  | Students
             load_data();
             console.log(data);
             console.log(jqXHR);
-              console.log(textStatus);
-              console.log(errorThrown);
-          
+            console.log(textStatus);
+            console.log(errorThrown);
           }
           })
         });
