@@ -11,17 +11,17 @@ class AdminAdmissionNotification extends Notification
 {
     use Queueable;
     public $parents;
-    public $studentDetails;
+    public $otherAdmissionDetails;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($parent, $studentDetails)
+    public function __construct($parent, $otherAdmissionDetails)
     {
         $this->parents = $parent;
-        $this->studentDetails = $studentDetails;
+        $this->otherAdmissionDetails = $otherAdmissionDetails;
     }
 
     /**
@@ -46,11 +46,11 @@ class AdminAdmissionNotification extends Notification
         return (new MailMessage)
                     ->line('<b>Hello Admin</b>')
                     ->line('New parent just register')
-                    ->line('<b>Parent Details</b>')
-                    ->line($this->parents->parent_name)
+                    ->line('<b>Parent Name</b>')
+                    ->line(Ucwords($this->parents->parent_name))
                     ->line('<br/>')
-                    ->line('<b>Student Details</b>')
-                    ->line($this->studentDetails['full_name'])
+                    ->line('<b>Name of Child</b>')
+                    ->line(Ucwords($this->otherAdmissionDetails->full_name))
                     ->action('Login to view message', url('/admin'));
     }
 

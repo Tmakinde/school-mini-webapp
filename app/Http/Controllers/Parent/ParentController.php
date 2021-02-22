@@ -11,11 +11,12 @@ use App\User;
 use App\Admission;
 use App\Notifications\Parent\AdmissionNotification;
 use App\Notifications\Admin\AdminAdmissionNotification;
+use App\Events\ParentAdmissionProcessed;
 class ParentController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth:admins');
-        $this->middleware('can:Admin-Gate');
+        $this->middleware('auth:admins')->only('getAllParent');
+        $this->middleware('can:Admin-Gate')->only('getAllParent');
     }
 
     public function index(){
@@ -26,7 +27,7 @@ class ParentController extends Controller
         return view('Parent.admission');
     }
 
-    public function processAdmission(Request $request){
+    public function processAdmission(Request $request, Admin $admin){
         $validator = Validator::make($request->all(), [
             'full_name' => ['required', 'string'],
             'dob' => ['required', 'string'],
@@ -65,9 +66,10 @@ class ParentController extends Controller
             $admission->parent_id = $parents->id;
             $admission->save();
 
-            $parents->notify(new AdmissionNotification($parents)); // notification
-            $admin = Admin::where('id', 1)->firstOrFail();
-            $admin->notify(new AdminAdmissionNotification($parents, $studentDetails));
+            $superAdmins = Admin::where('role_id', 1)->get();
+
+            event(new ParentAdmissionProcessed($parents, $superAdmins, $admission));
+            
             return redirect()->route('parent.processed-admission');
         }
         return redirect()->route('parent.admission')->withInput()->withErrors($validator);

@@ -13,12 +13,6 @@
 
 Route::get('/login', 'Auth\LoginController@showLoginForm');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
-
-//parent
-Route::get('/parent/login', 'Parent\LoginController@showLoginForm')->name('parent-login');
-Route::post('/parent/login', 'Parent\LoginController@login')->name('parent.login');
-Route::get('/parent/result', 'Parent\LoginController@downloadResult')->name('parent.result');
-
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
@@ -26,6 +20,11 @@ Route::post('/MySubject', 'HomeController@createUserSubject')->name('User-Subjec
 Route::get('/Mycourses', 'HomeController@displayUserSubjects')->name('User-Courses');
 Route::get('/result', 'HomeController@viewResult')->name('myresult');
 Route::get('/download/result', 'HomeController@downloadResult')->name('download-result');
+
+//parent
+Route::get('/parent/login', 'Parent\LoginController@showLoginForm')->name('parent-login');
+Route::post('/parent/login', 'Parent\LoginController@login')->name('parent.login');
+Route::get('/parent/result', 'Parent\LoginController@downloadResult')->name('parent.result');
 Route::get('/parent', 'Parent\ParentController@index')->name('parent.index');
 Route::get('/parent/admission', 'Parent\ParentController@admission')->name('parent.admission');
 Route::post('/parent/admission/process', 'Parent\ParentController@processAdmission')->name('parent.process-admission');
@@ -42,7 +41,7 @@ Route::get('/registration/deadline', 'HomeController@deadlineRegistrationApi');
 Route::get('/password/reset','Auth\ForgotpasswordController@showLinkRequestForm')->name('password.request');
 Route::post('/password/email','Auth\ForgotpasswordController@sendResetLinkEmail')->name('password.email');
 //Reset Password Routes
-Route::get('/password/reset/{token}','Admin\ResetpasswordController@showResetForm')->name('password.reset');
+Route::get('/password/reset/{token}','Auth\ResetpasswordController@showResetForm')->name('password.reset');
 Route::post('/password/reset','Auth\ResetpasswordController@reset')->name('password-update');
 
 
@@ -94,20 +93,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/parent/admission/approve/{id}', 'Admin\AdmissionController@approveAdmission')->name('admin.admission.approve');
     Route::post('/parent/admission/reject/{id}', 'Admin\AdmissionController@rejectAdmission')->name('admin.admission.reject');
     Route::get('/all/parent/', 'Parent\ParentController@getAllParent')->name('admin.all.parent');
-    //Forgot Password Routes
-    Route::get('/password/reset','Admin\ForgotpasswordController@showLinkRequestForm')->name('password-request');
-    Route::post('/password/email','Admin\ForgotpasswordController@sendResetLinkEmail')->name('admin.password-email');
-
-    //Reset Password Routes
-    Route::get('/password/reset/{token}','Admin\ResetpasswordController@showResetForm')->name('password.reset');
-    Route::post('/password/reset','Admin\ResetpasswordController@reset')->name('admin.password-update');
 
     //Registration route
     Route::get('/course/registration/deadline/{id}','Admin\UserController@courseRegistrationView')->name('deadline.view');
     Route::post('/course/registration/deadline/','Admin\UserController@courseRegistration')->name('deadline.post');
 
     //forgot password
-    Route::get('/password/reset','Admin\ForgotpasswordController@showLinkRequestForm')->name('password.request');
+    Route::get('/password/reset','Admin\ForgotpasswordController@showLinkRequestForm')->name('admin.password.request');
     Route::post('/password/email','Admin\ForgotpasswordController@sendResetLinkEmail')->name('admin.password-email');
     //Reset Password Routes
     Route::get('/password/reset/{token}','Admin\ResetpasswordController@showResetForm')->name('password.reset');

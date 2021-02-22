@@ -41,10 +41,9 @@ class AdmissionNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Hello Mr '.$this->parents->name)
+                    ->line('<p>Hello Mr <b>'.$this->parents->name.'</b></p>')
                     ->line('Your Admission is being processed, you will be notify after it has been approved by the admin.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for your registration!');
+                    ->line('<b>Thank you for your registration!</b>');
     }
 
     /**
