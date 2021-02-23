@@ -21,13 +21,11 @@ background-color:whitesmoke;
 }
 </style>
 
-<body style="background-color:blue">
+<body style="background-image:url({{asset('/img/img3.jpg')}});background-repeat: no-repeat">
   <div>
     <div class="row" style="width:100%">
-      <div class="col-md-6 col-sm-4 ratio-box" style="margin-bottom:-255px">
-        <img class="mediabox-img lazyload" src="{{asset('/img/img3.jpg')}}" width="100%" style="height:100%">
-      </div>
-      <div class="col-md-6 col-sm-8 pt-sm-5">
+      <div class="offset-md-3"></div>
+      <div class="col-md-6 col-sm-8">
         <div class="pt-5">
           <form method = 'post' action = "{{route('admin-login')}}" style="100%">
             @csrf

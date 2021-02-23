@@ -6,6 +6,7 @@ use App\Events\ParentAdmissionProcessed;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Notifications\Parent\AdmissionNotification;
+//use Carbon;
 
 class ParentAboutSubmittedAdmissionForm
 {
@@ -27,8 +28,8 @@ class ParentAboutSubmittedAdmissionForm
      */
     public function handle(ParentAdmissionProcessed $event)
     {
-        $delayUntil = Carbon::now()->addMinutes(5);
-        $event->parent->notify(new AdmissionNotification($event->parent))->delay($delayUntil);
+        //$delayUntil = Carbon::now()->addMinutes(5);
+        $event->parent->notify(new AdmissionNotification($event->parent));
     }
-    
+
 }
