@@ -66,7 +66,7 @@
                 </style>
         </head>
 
-        <body id ="body" style="background-color:purple">
+        <body id ="body" >
                 <nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark text-right">
                 
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
